@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Łysa Pała z Rivii Rekrutuje</title>
+  <style>
+    body {
+      background-color: black;
+      color: #f0ff00;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 50px;
+      animation: flash 0.3s infinite alternate;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px red;
+    }
+
+    form {
+      margin-top: 30px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #f0ff00;
+      background-color: #111;
+      color: #f0ff00;
+      font-size: 18px;
+    }
+
+    button {
+      background-color: #f0ff00;
+      color: black;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+      box-shadow: 0 0 10px red;
+    }
+
+    .info {
+      font-size: 12px;
+      margin-top: 10px;
+      color: #999;
+    }
+
+    @keyframes flash {
+      0% { background-color: black; }
+      100% { background-color: #111; }
+    }
+
+    @keyframes rotateText {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Łysa Pała z Rivii Rekrutuje</h1>
+  <p>Zgłoś się do szkoły pojebanych wiedźminów z ADHD</p>
+  <form onsubmit="showCongrats(event)">
+    <input type="text" placeholder="Twoje imię" required><br>
+    <input type="text" placeholder="Twoja ksywa pojeba" required><br>
+    <button type="submit">Wyślij zgłoszenie</button>
+    <div class="info">(Bekowa strona dla zabawy. Jak masz kij w dupie – nie klikaj.)</div>
+  </form>
+
+  <script>
+    function showCongrats(e) {
+      e.preventDefault();
+      document.body.innerHTML = `
+        <div style="background:black;color:#f0ff00;
+        font-size:36px;display:flex;justify-content:center;
+        align-items:center;height:100vh;flex-direction:column;
+        animation: flash 0.1s infinite alternate;">
+          <div style="animation: rotateText 2s linear infinite;
+          font-size:50px; font-weight:bold; text-shadow: 0 0 20px red;">
+            WITAM POJEBA!
+          </div>
+          <div style="margin-top:20px; font-size:24px;">
+            ZOSTAŁEŚ JEBANYM WIEDŹMINEM Z ADHD
+          </div>
+          <div style="margin-top:30px;font-size:14px;color:#888;">
+            *Strona sponsorowana przez napierdolonych mutantów z Kaer Jabol*
+          </div>
+        </div>`;
+    }
+  </script>
+</body>
+</html>
