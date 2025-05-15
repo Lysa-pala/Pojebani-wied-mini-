@@ -1,4 +1,4 @@
-# Pojebani-wied-mini-
+# Poj-wied-mini-
 Wiedznini z adhd 
 <!DOCTYPE html>
 <html lang="pl">
