@@ -4,94 +4,88 @@ Wiedznini z adhd
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Łysa Pała z Rivii Rekrutuje</title>
+  <title>Rekrutacja Wiedźminów ADHD</title>
   <style>
     body {
-      background-color: black;
-      color: #f0ff00;
-      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      background: #111;
+      color: #0f0;
       text-align: center;
-      padding: 50px;
-      animation: flash 0.3s infinite alternate;
     }
-
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px red;
+    .container {
+      padding-top: 100px;
     }
-
-    form {
-      margin-top: 30px;
-    }
-
-    input {
-      padding: 10px;
-      margin: 10px;
-      border: 2px solid #f0ff00;
-      background-color: #111;
-      color: #f0ff00;
+    input, button {
       font-size: 18px;
+      margin: 10px;
+      padding: 10px;
+      background: #222;
+      color: #fff;
+      border: 2px solid #0f0;
     }
-
-    button {
-      background-color: #f0ff00;
-      color: black;
-      padding: 15px 30px;
-      font-size: 20px;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-      font-weight: bold;
-      box-shadow: 0 0 10px red;
-    }
-
-    .info {
+    .small-text {
       font-size: 12px;
-      margin-top: 10px;
-      color: #999;
+      color: #777;
     }
-
-    @keyframes flash {
-      0% { background-color: black; }
-      100% { background-color: #111; }
+    .blackout {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: yellow;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+      display: none;
     }
-
-    @keyframes rotateText {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .fire {
+      font-size: 100px;
+      color: red;
+      animation: burn 0.8s infinite alternate;
+    }
+    @keyframes burn {
+      0% { text-shadow: 0 0 10px orange; }
+      100% { text-shadow: 0 0 20px red; transform: scale(1.1); }
     }
   </style>
 </head>
 <body>
-  <h1>Łysa Pała z Rivii Rekrutuje</h1>
-  <p>Zgłoś się do szkoły pojebanych wiedźminów z ADHD</p>
-  <form onsubmit="showCongrats(event)">
-    <input type="text" placeholder="Twoje imię" required><br>
-    <input type="text" placeholder="Twoja ksywa pojeba" required><br>
-    <button type="submit">Wyślij zgłoszenie</button>
-    <div class="info">(Bekowa strona dla zabawy. Jak masz kij w dupie – nie klikaj.)</div>
-  </form>
+  <div class="container">
+    <h1>Łysa Pała z Rivii rekrutuje!</h1>
+    <p>Podaj dane, żeby zostać pojebanym Wiedźminem ADHD:</p>
+    <input type="text" id="name" placeholder="Imię">
+    <input type="text" id="nickname" placeholder="Ksywka pojeba">
+    <br>
+    <button onclick="submitForm()">Wyślij zgłoszenie</button>
+    <div class="small-text">(Strona dla jaj, nie traktuj tego jak rekrutacji do GROMu)</div>
+  </div>
+
+  <div id="blackout" class="blackout">
+    <div class="fire">IGNI!</div>
+    <p>WITAM POJEBA<br>ZOSTAŁEŚ JEBANYM WIEDŹMINEM</p>
+    <audio id="igni-sound" autoplay>
+      <source src="https://cdn.pixabay.com/audio/2021/08/08/audio_c1a400a39b.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
   <script>
-    function showCongrats(e) {
-      e.preventDefault();
-      document.body.innerHTML = `
-        <div style="background:black;color:#f0ff00;
-        font-size:36px;display:flex;justify-content:center;
-        align-items:center;height:100vh;flex-direction:column;
-        animation: flash 0.1s infinite alternate;">
-          <div style="animation: rotateText 2s linear infinite;
-          font-size:50px; font-weight:bold; text-shadow: 0 0 20px red;">
-            WITAM POJEBA!
-          </div>
-          <div style="margin-top:20px; font-size:24px;">
-            ZOSTAŁEŚ JEBANYM WIEDŹMINEM Z ADHD
-          </div>
-          <div style="margin-top:30px;font-size:14px;color:#888;">
-            *Strona sponsorowana przez napierdolonych mutantów z Kaer Jabol*
-          </div>
-        </div>`;
+    function submitForm() {
+      const name = document.getElementById("name").value.trim();
+      const nickname = document.getElementById("nickname").value.trim();
+      if (name === "" || nickname === "") {
+        alert("Wpisz imię i ksywkę, pojebie!");
+        return;
+      }
+      document.getElementById("blackout").style.display = "flex";
+      const audio = document.getElementById("igni-sound");
+      audio.volume = 1;
+      audio.play();
     }
   </script>
 </body>
