@@ -43,15 +43,23 @@ Wiedznini z adhd
       z-index: 9999;
       flex-direction: column;
       display: none;
+      animation: shake 0.4s infinite;
     }
     .fire {
       font-size: 100px;
-      color: red;
-      animation: burn 0.8s infinite alternate;
+      color: orange;
+      animation: burn 1s infinite alternate;
     }
     @keyframes burn {
-      0% { text-shadow: 0 0 10px orange; }
-      100% { text-shadow: 0 0 20px red; transform: scale(1.1); }
+      0% { text-shadow: 0 0 20px red, 0 0 40px orange; transform: scale(1); }
+      100% { text-shadow: 0 0 40px yellow, 0 0 60px red; transform: scale(1.2); }
+    }
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(0px, -2px); }
     }
   </style>
 </head>
@@ -67,10 +75,10 @@ Wiedznini z adhd
   </div>
 
   <div id="blackout" class="blackout">
-    <div class="fire">IGNI!</div>
+    <div class="fire">IGNI!!!</div>
     <p>WITAM POJEBA<br>ZOSTAŁEŚ JEBANYM WIEDŹMINEM</p>
     <audio id="igni-sound" autoplay>
-      <source src="https://cdn.pixabay.com/audio/2021/08/08/audio_c1a400a39b.mp3" type="audio/mpeg">
+      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9ed4e22848.mp3" type="audio/mpeg">
     </audio>
   </div>
 
@@ -82,10 +90,14 @@ Wiedznini z adhd
         alert("Wpisz imię i ksywkę, pojebie!");
         return;
       }
+
       document.getElementById("blackout").style.display = "flex";
+
       const audio = document.getElementById("igni-sound");
       audio.volume = 1;
-      audio.play();
+      audio.play().catch(() => {
+        console.log("Dźwięk został zablokowany przez przeglądarkę.");
+      });
     }
   </script>
 </body>
